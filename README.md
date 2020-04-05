@@ -1,2 +1,3 @@
-# masscalculator_docker
-Docker image for MassCalculator
+# MassCalculator::docker
+
+Docker container used to run MassCalculator
