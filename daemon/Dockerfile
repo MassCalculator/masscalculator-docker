@@ -1,5 +1,5 @@
 # Pull base image.
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER MergimHalimi
 
@@ -54,6 +54,14 @@ RUN apt-get -y install \
 # Install googletest
 RUN git clone https://github.com/google/googletest.git && \
 	cd googletest && \
+	mkdir build && cd build && \
+	cmake .. && \
+	make && \
+	make install
+
+# Install libmasscalculator
+RUN git clone https://github.com/MassCalculator/libmasscalculator.git && \
+	cd libmasscalculator && \
 	mkdir build && cd build && \
 	cmake .. && \
 	make && \
