@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Build docker image
-docker build -t masscalculatordocker .
+docker build -t masscalculator ./daemon
