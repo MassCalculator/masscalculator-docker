@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Run docker image
-docker run -it masscalculator
+docker run -t masscalculator
