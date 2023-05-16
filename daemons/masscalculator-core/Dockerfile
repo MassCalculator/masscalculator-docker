@@ -21,7 +21,7 @@ RUN git checkout devel
 RUN sudo tools/installers/essentials.sh
 
 ## Build the masscalculator-core library
-RUN cmake -B build/masscalculator-core-Debug -DCMAKE_BUILD_TYPE=Debug && \
+RUN cmake -B build/masscalculator-core-Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug && \
 	cmake --build build/masscalculator-core-Debug --config Debug
 
 ## Set the entrypoint command to run the MassCalculator. Currently running tests until other projects are added
