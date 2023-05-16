@@ -6,6 +6,8 @@ This repository contains the docker container for MassCalculator.
 
 ## Instructions
 
+- [Environment Variables](docs/ENVIRONMENT.md)
+- [Environment Setup](docs/SETUP.md)
 - [How to Build](docs/BUILD.md)
 
 ## Jenkins Server
