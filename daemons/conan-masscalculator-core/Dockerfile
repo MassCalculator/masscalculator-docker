@@ -26,3 +26,6 @@ RUN cmake -B build/masscalculator-core-Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug &
 
 ## Set the entrypoint command to run the MassCalculator. Currently running tests until other projects are added
 ENTRYPOINT ["/bin/bash", "-c", "cd build/masscalculator-core-Debug && ctest -C Debug"]
+
+# @todo(jimmyhalimi): Update dockerfile for proper repository, leaving as is
+# for testing purposes.
