@@ -33,6 +33,8 @@ sudo cmake --build <BUILD DIRECTORY> -t <Target> --config <Debug|Release>
 
 #### Available targets
 
+* build-conan-masscalculator-core-docker
+* run-conan-masscalculator-core-docker
 * build-masscalculator-core-docker
 * run-masscalculator-core-docker
 
