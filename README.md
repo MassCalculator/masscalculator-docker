@@ -1,7 +1,7 @@
 # MassCalculator Docker container
 
-[![Build Status](https://jenkins.mergimhalimi.com/buildStatus/icon?job=masscalculator-docker%2Fdevel)](https://jenkins.mergimhalimi.com/job/masscalculator-docker/job/devel/)
-[![CMake](https://github.com/MassCalculator/masscalculator-docker/actions/workflows/cmake.yml/badge.svg?branch=devel)](https://github.com/MassCalculator/masscalculator-docker/actions/workflows/cmake.yml)
+[![Build Status](https://jenkins.mergimhalimi.com/buildStatus/icon?job=masscalculator-docker%2Fmaster)](https://jenkins.mergimhalimi.com/job/masscalculator-docker/job/master/)
+[![CMake](https://github.com/MassCalculator/masscalculator-docker/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/MassCalculator/masscalculator-docker/actions/workflows/cmake.yml)
 
 This repository contains the docker containers for `MassCalculator` project.
 
