@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        build_type: [Debug, Release]
+        build_type: [Release]
 
     steps:
     - uses: actions/checkout@v3
@@ -22,11 +22,29 @@ jobs:
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-    - name: Build
+    - name: Docker Build - masscalculator-cli
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t build-masscalculator-cli-docker --config ${{matrix.build_type}}
+
+    - name: Docker Build - masscalculator-core
       run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t build-masscalculator-core-docker --config ${{matrix.build_type}}
 
-    - name: Run
+    - name: Docker Build - masscalculator-gui
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t build-masscalculator-gui-docker --config ${{matrix.build_type}}
+
+    - name: Docker Build - masscalculator-yocto
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t build-masscalculator-yocto-docker --config ${{matrix.build_type}}
+
+    - name: Docker Run - masscalculator-cli
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t run-masscalculator-cli-docker --config ${{matrix.build_type}}
+
+    - name: Docker Run - masscalculator-core
       run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t run-masscalculator-core-docker --config ${{matrix.build_type}}
+
+    - name: Docker Run - masscalculator-gui
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t run-masscalculator-gui-docker --config ${{matrix.build_type}}
+
+    - name: Docker Run - masscalculator-yocto
+      run: cmake --build ${{github.workspace}}/build/masscalculator-docker-${{matrix.build_type}} -t run-masscalculator-yocto-docker --config ${{matrix.build_type}}
 
     - name: Deploy
       run: echo 'Deploy stage is in progress'

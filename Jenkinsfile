@@ -11,17 +11,57 @@ pipeline {
                 sh "sudo tools/installers/essentials.sh"
             }
         }
-        stage('Docker Build') {
-            // @todo(jimmyhalimi): Add a way to build other targets also.
+        stage('Configure CMake') {
             steps {
                 sh "cmake -B build/masscalculator-docker-Release -G Ninja -DCMAKE_BUILD_TYPE=Release"
-                sh "sudo cmake --build build/masscalculator-docker-Release -t build-masscalculator-core-docker --config Release"
+            }
+        }
+        stage('Docker Build') {
+            parallel {
+                stage('masscalculator-cli') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t build-masscalculator-cli-docker --config Release"
+                    }
+                }
+                stage('masscalculator-core') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t build-masscalculator-core-docker --config Release"
+                    }
+                }
+                stage('masscalculator-gui') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t build-masscalculator-gui-docker --config Release"
+                    }
+                }
+                stage('masscalculator-yocto') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t build-masscalculator-yocto-docker --config Release"
+                    }
+                }
             }
         }
         stage('Docker Run') {
-            // @todo(jimmyhalimi): Add a way to run other targets also.
-            steps {
-                sh "sudo cmake --build build/masscalculator-docker-Release -t run-masscalculator-core-docker --config Release"
+            parallel {
+                stage('masscalculator-cli') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t run-masscalculator-cli-docker --config Release"
+                    }
+                }
+                stage('masscalculator-core') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t run-masscalculator-core-docker --config Release"
+                    }
+                }
+                stage('masscalculator-gui') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t run-masscalculator-gui-docker --config Release"
+                    }
+                }
+                stage('masscalculator-yocto') {
+                    steps {
+                        sh "sudo cmake --build build/masscalculator-docker-Release -t run-masscalculator-yocto-docker --config Release"
+                    }
+                }
             }
         }
         stage('Deploy') {
