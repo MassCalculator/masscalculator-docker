@@ -15,14 +15,17 @@ RUN git clone https://github.com/MassCalculator/masscalculator-core.git
 WORKDIR /masscalculator-core
 
 ## Checkout the latest version of the code
-RUN git checkout master
+RUN git checkout devel
 
 ## Run the essentials script
 RUN sudo tools/installers/essentials.sh
 
 ## Build the masscalculator-core library
-RUN cmake -B build/masscalculator-core-Release -G Ninja -DCMAKE_BUILD_TYPE=Release && \
-	cmake --build build/masscalculator-core-Release --config Release
+RUN cmake -B build/masscalculator-core-Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug && \
+	cmake --build build/masscalculator-core-Debug --config Debug
 
 ## Set the entrypoint command to run the MassCalculator. Currently running tests until other projects are added
-ENTRYPOINT ["/bin/bash", "-c", "cd build/masscalculator-core-Release && ctest -C Release"]
+ENTRYPOINT ["/bin/bash", "-c", "cd build/masscalculator-core-Debug && ctest -C Debug"]
+
+# @todo(jimmyhalimi): Update dockerfile for proper repository, leaving as is
+# for testing purposes.
